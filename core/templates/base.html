@@ -14,11 +14,11 @@
   <title>Vite App</title>
 
   {% if debug %}
-  <script type="module" src="http://localhost:5173/@vite/client"></script>
+  <script type="module" src="http://localhost:3000/@vite/client"></script>
   
   <!-- If you're using vite with React, this next script will be needed for HMR -->
   <script type="module">
-    import RefreshRuntime from 'http://localhost:5173/@react-refresh'
+    import RefreshRuntime from 'http://localhost:3000/@react-refresh'
     if (RefreshRuntime) {
       RefreshRuntime.injectIntoGlobalHook(window)
       window.$RefreshReg$ = () => { }
@@ -35,7 +35,7 @@
 
   {% if debug %}
   <!-- This url will be different for each type of app. Point it to your main js file. -->
-  <script type="module" src="http://localhost:5173/main.jsx"></script>
+  <script type="module" src="http://localhost:3000/main.jsx"></script>
   {% else %}
   {% render_vite_bundle %}
   {% endif %}
