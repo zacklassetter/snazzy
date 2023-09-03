@@ -40,6 +40,7 @@ ENV NODE_PATH $NVM_DIR/versions/node/$NODE_VERSION/lib/node_modules
 ENV PATH $NVM_DIR/versions/node/$NODE_VERSION/bin:$PATH
 
 WORKDIR /code
+RUN mkdir /code/staticfiles
 
 COPY requirements.txt /code
 RUN pip install --no-cache-dir -r requirements.txt

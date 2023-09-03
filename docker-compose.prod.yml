@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    # command: gunicorn snazzy_proj.wsgi:application --bind 0.0.0.0:8000
+    command: >
+      bash -c "python manage.py makemigrations
+      && python manage.py migrate
+      && npm run build
+      && python manage.py collectstatic --no-input --clear
+      && gunicorn snazzy_proj.wsgi:application --bind 0.0.0.0:8000"
+    volumes:
+      - .:/code
+      - static_volume:/code/staticfiles
+      - node_modules:/code/node_modules
+    expose:
+      - 8000
+    env_file:
+      - .env.prod
+  nginx:
+    build: ./nginx
+    volumes:
+      - static_volume:/code/staticfiles
+    ports:
+      - 80:80
+    depends_on:
+      - web
+
+volumes:
+  static_volume:
+  node_modules:
+
+
+  

@@ -7,7 +7,7 @@ import { splitVendorChunkPlugin } from 'vite'
 export default defineConfig({
   build: { manifest: true },
   base: process.env.mode === "production" ? "/static/" : "/",
-  root: "./src",
+  root: "src",
   plugins: [react(), reactRefresh(), splitVendorChunkPlugin()],
   server: {
     watch: {
