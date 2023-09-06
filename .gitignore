@@ -9,10 +9,19 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+package-lock.json
+yarn.lock
 dist
 dist-ssr
 *.local
 
+#cache
+snazzy_proj/__pycache__
+base_api/__pycache__
+core/__pycache__
+core/templatetags/__pycache__
+core/migrations/__pycache__
+base_api/migrations/__pycache__
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

@@ -9,7 +9,7 @@ export function isTokenExpired(token) {
 }
 
 const api = axios.create({
-  baseURL: import.meta.env.MODE === "production" ? 'http://localhost:80' : 'http://localhost:8000',
+  baseURL: import.meta.env.MODE === "production" ? import.meta.env.VITE_HOST : 'http://localhost:8000',
 });
 
 api.interceptors.request.use(
