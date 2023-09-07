@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import classes from './SpecificItemView.module.css';
 import useRequest from '../../hooks/useRequest';
 import api from '../../Auth/authentication';
@@ -54,15 +55,16 @@ function SpecificItem({ data }) {
       <h3>{data.name}</h3>
       <p>{data.description}</p>
       <p>Price: ${data.price}</p>
-      <button
+      <Button
+        variant="contained" endIcon={<AddShoppingCartIcon />}
         onClick={() => {
           addToCart();
         }}
       >
         Add to Cart
-      </button>
+      </Button>
       <Link to="/">
-        <button className={classes.returnButton}>Return to items</button>
+        <Button className={classes.returnButton}>Return to items</Button>
       </Link>
       <Snackbar
         open={open}
