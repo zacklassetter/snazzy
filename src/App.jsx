@@ -62,17 +62,16 @@ function App() {
      
         <Header onLogout={handleLogout}/>
         <div className={classes.pageContainer}>
-          <div className={classes.navContainer}>
+          {/* <div className={classes.navContainer}>
             <SideNav />
-          </div>
+          </div> */}
           <div className={classes.pageContentContainer}>
             <Routes>
               <Route path="/login" element={<LoginView onLogin={handleLogin} />} />
               <Route path="/register" element={<RegisterView />} />
               <Route path="/cart" element={<CartView />} />
               <Route path="/new-item" element={<NewItemView />} />
-              <Route path="/:id" element={<SpecificItemView />} />
-              
+              <Route path="/:id" element={<SpecificItemView />} />             
               <Route
                 path="/"
                 element={

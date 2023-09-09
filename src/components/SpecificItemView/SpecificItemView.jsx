@@ -1,19 +1,19 @@
-import { Link, useParams } from 'react-router-dom';
-import Button from '@mui/material/Button';
-import Snackbar from '@mui/material/Snackbar';
-import IconButton from '@mui/material/IconButton';
-import CloseIcon from '@mui/icons-material/Close';
-import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
-import classes from './SpecificItemView.module.css';
-import useRequest from '../../hooks/useRequest';
-import api from '../../Auth/authentication';
-import React from 'react';
+import { Link, useParams } from "react-router-dom";
+import Button from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import classes from "./SpecificItemView.module.css";
+import useRequest from "../../hooks/useRequest";
+import api from "../../Auth/authentication";
+import React from "react";
 
 function SpecificItem({ data }) {
   const [open, setOpen] = React.useState(false);
 
   const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
       return;
     }
     setOpen(false);
@@ -22,7 +22,7 @@ function SpecificItem({ data }) {
   const handleUndo = () => {
     api.delete(`/api/cart/${data.id}/`);
     setOpen(false);
-  }
+  };
 
   const action = (
     <React.Fragment>
@@ -42,7 +42,7 @@ function SpecificItem({ data }) {
 
   const addToCart = async () => {
     try {
-      const res = await api.post('/api/cart', { 'item_id': data.id });
+      const res = await api.post("/api/cart", { item_id: data.id });
       setOpen(true);
       console.log(res);
     } catch (e) {
@@ -52,20 +52,29 @@ function SpecificItem({ data }) {
   return (
     <div className={classes.specificItemView}>
       <img src={data.image} alt={data.name} />
-      <h3>{data.name}</h3>
-      <p>{data.description}</p>
-      <p>Price: ${data.price}</p>
-      <Button
-        variant="contained" endIcon={<AddShoppingCartIcon />}
-        onClick={() => {
-          addToCart();
-        }}
-      >
-        Add to Cart
-      </Button>
-      <Link to="/">
-        <Button className={classes.returnButton}>Return to items</Button>
-      </Link>
+      <div className={classes.itemMenu}>
+        <div className={classes.itemDetails}>
+          <h3>{data.name}</h3>
+          <h4>Price: ${data.price}</h4>
+          <p>{data.description}</p>
+          
+        </div>
+        <div className={classes.cartButtons}>
+          <Button
+            variant="contained"
+            endIcon={<AddShoppingCartIcon />}
+            onClick={() => {
+              addToCart();
+            }}
+          >
+            Add to Cart
+          </Button>
+          <Link to="/">
+            <Button className={classes.returnButton}>Return to items</Button>
+          </Link>
+        </div>
+      </div>
+
       <Snackbar
         open={open}
         autoHideDuration={6000}

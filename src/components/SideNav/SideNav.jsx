@@ -16,7 +16,7 @@ function SideNav() {
   ];
   return (
     <div className={classes.categories}>
-      <strong>Categories</strong>
+      <strong>Fliters</strong>
       <ul>
         {categories.map((category) => (
           <li>{category}</li>
