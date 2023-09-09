@@ -22,6 +22,7 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView
 )
+from django.conf.urls.static import static
 from .views import RegisterView
 
 
@@ -32,7 +33,12 @@ urlpatterns = [
     path('register/', RegisterView.as_view(), name='auth_register'),
     path('api/', include('base_api.urls')),
     # re_path(r"^static/(?P<path>.*)$", serve, {"document_root": settings.STATIC_ROOT}),
-    re_path(r"^.*$",
-            TemplateView.as_view(template_name="base.html")),
+    # re_path(r"^.*$",
+    #         TemplateView.as_view(template_name="base.html")),
     
 ]
+
+if bool(settings.DEBUG):
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    
+urlpatterns.append(re_path(r"^.*$", TemplateView.as_view(template_name="base.html")))

@@ -11,17 +11,9 @@
     border-radius: 0.5rem;
     transition: all 0.3s ease-out;
     max-width: 500px;
+
 }
 
-button {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-    transition: all 0.3s ease-out;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #ccc;
+.specificItemView img {
+    width: 50%
 }

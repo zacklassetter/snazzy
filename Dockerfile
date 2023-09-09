@@ -41,6 +41,7 @@ ENV PATH $NVM_DIR/versions/node/$NODE_VERSION/bin:$PATH
 
 WORKDIR /code
 RUN mkdir /code/staticfiles
+# RUN mkdir /code/mediafiles
 
 COPY requirements.txt /code
 RUN pip install --no-cache-dir -r requirements.txt

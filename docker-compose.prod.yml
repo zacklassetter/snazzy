@@ -13,6 +13,7 @@ services:
     volumes:
       - .:/code
       - static_volume:/code/staticfiles
+      - ./mediafiles:/code/mediafiles
       - /code/node_modules
     expose:
       - 8000
@@ -22,6 +23,7 @@ services:
     build: ./nginx
     volumes:
       - static_volume:/code/staticfiles
+      - ./mediafiles:/code/mediafiles
     ports:
       - 80:80
     depends_on:
@@ -29,6 +31,7 @@ services:
 
 volumes:
   static_volume:
+  # media_volume:
   # node_modules:
 
 

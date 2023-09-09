@@ -17,7 +17,7 @@ dist-ssr
 
 #cache
 snazzy_proj/__pycache__
-base_api/__pycache__
+base_api/__pycache__/
 core/__pycache__
 core/templatetags/__pycache__
 core/migrations/__pycache__
@@ -32,3 +32,11 @@ base_api/migrations/__pycache__
 *.njsproj
 *.sln
 *.sw?
+
+.env.prod
+.env.dev
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class

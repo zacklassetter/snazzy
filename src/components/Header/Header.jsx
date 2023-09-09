@@ -1,9 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
-import Badge from '@mui/material/Badge';
-import { styled } from '@mui/material/styles';
-import IconButton from '@mui/material/IconButton';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import UserContext from "../../Context/UserContext";
 import AddItemsButton from "./AddItemsButton";
@@ -16,14 +13,6 @@ import classes from "./Header.module.css";
 // import AddItemsButton from './AddItemsButton';
 
 function Header({ onLogout }) {
-  const StyledBadge = styled(Badge)(({ theme }) => ({
-    '& .MuiBadge-badge': {
-      right: -3,
-      top: 13,
-      border: `2px solid ${theme.palette.background.paper}`,
-      padding: '0 4px',
-    },
-  }));
 
   const { user } = useContext(UserContext);
   const isAuthenticated = user?.id;

@@ -12,6 +12,8 @@ import CartView from './components/Cart/CartView';
 import { isTokenExpired } from './Auth/authentication';
 import LoginView from './components/Login/LoginView';
 import RegisterView from './components/Register/RegisterView';
+import NewItemView from './components/NewItem/NewItemView';
+
 
 function App() {
   const [user, setUser] = useState({ user: { username: '', id: null, is_staff: false } });
@@ -68,7 +70,9 @@ function App() {
               <Route path="/login" element={<LoginView onLogin={handleLogin} />} />
               <Route path="/register" element={<RegisterView />} />
               <Route path="/cart" element={<CartView />} />
+              <Route path="/new-item" element={<NewItemView />} />
               <Route path="/:id" element={<SpecificItemView />} />
+              
               <Route
                 path="/"
                 element={

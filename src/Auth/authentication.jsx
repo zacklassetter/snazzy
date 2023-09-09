@@ -1,5 +1,7 @@
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
+axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+axios.defaults.xsrfCookieName = "csrftoken";
 
 export function isTokenExpired(token) {
   const decodedToken = jwt_decode(token);
@@ -46,8 +48,6 @@ api.interceptors.request.use(
         config.headers['Authorization'] = `Bearer ${accessToken}`;
       }
     }
-
-    config.headers['Content-Type'] = 'application/json';
 
     return config;
   },
