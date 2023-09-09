@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import api from '../Auth/authentication';
 
-const useRequest = (url, body = undefined) => {
+const useRequest = (url, body = undefined, params = undefined) => {
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -23,7 +23,7 @@ const useRequest = (url, body = undefined) => {
         });
     } else if (url) {
       api
-        .get(url, { headers })
+        .get(url, { headers: headers, params: params})
         .then((res) => {
           setData(res.data);
           setIsLoading(false);
@@ -33,7 +33,7 @@ const useRequest = (url, body = undefined) => {
           setIsLoading(false);
         });
     }
-  }, [url, body]);
+  }, [url, body, params]);
   return { data, isLoading, error };
 };
 

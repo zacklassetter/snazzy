@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import useRequest from '../../hooks/useRequest.jsx';
 import LoadingState from '../LoadingState/LoadingState.jsx';
 import classes from './ItemDisplay.module.css';
@@ -11,7 +11,8 @@ function ItemDisplay({ data }) {
           <div className={classes.itemElement}>
             <img src={item.image} alt={item.name} />
             <h3>{item.name}</h3>
-            <p>{item.description}</p>
+            <p>{item.category}</p>
+            <p className={classes.description}>{item.description}</p>
             <p>Price: ${item.price}</p>
           </div>
         </Link>
@@ -21,7 +22,9 @@ function ItemDisplay({ data }) {
 }
 
 function ItemDisplayView() {
-  const { data, isLoading, error } = useRequest('/api/items');
+  const params = useParams();
+
+  const { data, isLoading, error } = useRequest('/api/items', undefined, params);
 
   return (
     <div>

@@ -71,7 +71,23 @@ function App() {
               <Route path="/register" element={<RegisterView />} />
               <Route path="/cart" element={<CartView />} />
               <Route path="/new-item" element={<NewItemView />} />
-              <Route path="/:id" element={<SpecificItemView />} />             
+              {/* <Route
+                path="/items"
+                element={
+                  <div>
+                    <ItemDisplayView />
+                  </div>
+                }
+              /> */}
+              <Route path="/:id" element={<SpecificItemView />} />  
+              <Route
+                path="/items/:category"
+                element={
+                  <div>
+                    <ItemDisplayView />
+                  </div>
+                }
+              />           
               <Route
                 path="/"
                 element={

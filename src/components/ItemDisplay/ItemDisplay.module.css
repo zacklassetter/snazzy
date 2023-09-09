@@ -10,6 +10,15 @@
     border-radius: 4px;
     transition: all 0.3s ease-out;
     cursor: pointer;
+
+}
+
+.description {
+    width: 90%; 
+    height: 42px; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    white-space: nowrap;
 }
 
 .itemList {

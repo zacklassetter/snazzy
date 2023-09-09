@@ -22,6 +22,7 @@ import MailIcon from "@mui/icons-material/Mail";
 
 // import CurrentUser from './CurrentUser';
 import classes from "./Header.module.css";
+import { CATEGORIES } from "../../constants";
 // import UserContext from '../../Context/UserContext';
 // import api from '../../Auth/authentication';
 // import AddItemsButton from './AddItemsButton';
@@ -115,18 +116,18 @@ function PersistentDrawerLeft({ open, setOpen }) {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const categories = [
-    "clothing",
-    "electronics",
-    "books",
-    "jewelery",
-    "toys",
-    "beauty",
-    "sports",
-    "outdoors",
-    "home",
-    "grocery",
-  ];
+  // const categories = [
+  //   "clothing",
+  //   "electronics",
+  //   "books",
+  //   "jewelery",
+  //   "toys",
+  //   "beauty",
+  //   "sports",
+  //   "outdoors",
+  //   "home",
+  //   "grocery",
+  // ];
 
   return (
     <div>
@@ -155,30 +156,21 @@ function PersistentDrawerLeft({ open, setOpen }) {
         </div>
         <Divider />
         <List>
-          {categories.map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                {/* <ListItemIcon>
+          {CATEGORIES.map((text, index) => (
+            <Link key={index} to={`/items/${text.toLowerCase()}`}>
+              <ListItem disablePadding>
+                <ListItemButton>
+                  {/* <ListItemIcon>
                   {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                 </ListItemIcon> */}
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
+
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
+            </Link>
           ))}
         </List>
         <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
       </Drawer>
     </div>
   );

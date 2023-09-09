@@ -1,16 +1,24 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import DeleteIcon from '@mui/icons-material/Delete';
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import classes from "./SpecificItemView.module.css";
 import useRequest from "../../hooks/useRequest";
 import api from "../../Auth/authentication";
-import React from "react";
+import React, { useContext } from "react";
+import UserContext from "../../Context/UserContext";
 
 function SpecificItem({ data }) {
   const [open, setOpen] = React.useState(false);
+  const { user } = useContext(UserContext);
+  const isAuthenticated = user?.id;
+  const isStaff = user?.is_staff;
+  const location = useLocation();
+  const navigate = useNavigate();
+  const prev = location.state?.from || '/';
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -22,6 +30,11 @@ function SpecificItem({ data }) {
   const handleUndo = () => {
     api.delete(`/api/cart/${data.id}/`);
     setOpen(false);
+  };
+
+  const handleDelete = () => {
+    api.delete(`/api/items/${data.id}/`);
+    navigate(prev, { replace: true });
   };
 
   const action = (
@@ -60,6 +73,10 @@ function SpecificItem({ data }) {
           
         </div>
         <div className={classes.cartButtons}>
+          {isStaff && 
+          <Button variant="outlined" color="error" startIcon={<DeleteIcon />} onClick={handleDelete}>
+          Delete
+        </Button>}
           <Button
             variant="contained"
             endIcon={<AddShoppingCartIcon />}
@@ -88,7 +105,7 @@ function SpecificItem({ data }) {
 
 function SpecificItemView() {
   const { id } = useParams();
-
+  
   const { data, isLoading, error } = useRequest(`api/items/${id}/`);
   return <SpecificItem data={data} />;
 }

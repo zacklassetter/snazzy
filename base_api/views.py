@@ -19,6 +19,9 @@ def getItems(request):
     # parser_classes = [MultiPartParser, FormParser]
     if request.method == "GET":
         items = Item.objects.all()
+        category = request.query_params.get('category')
+        if category is not None:
+            items = items.filter(category=category)
         serializer = ItemSerializer(items, many=True)
         return Response(serializer.data)
     # elif request.method == "POST":
