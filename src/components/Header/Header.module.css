@@ -1,5 +1,5 @@
 .storeHeader {
-    background-color: #fff;
+    background-color: #131921;
     border-bottom: 1px solid #eaeaea;
     display: flex;
     justify-content: space-between;
@@ -7,6 +7,10 @@
     position: sticky;
     top: 0;
     z-index: 1;
+}
+
+.storeHeader h1 {
+    color: white
 }
 
 .userDisplay {
@@ -35,14 +39,19 @@
 }
 
 .subHeader {
-    background-color: #fff;
+    background-color: #232f3e;
     border-bottom: 1px solid #eaeaea;
     display: flex;
     justify-content: space-between;
     padding: 0 1rem;
-    position: sticky;
+    /* position: sticky; */
     top: 0;
     min-height: 42px;
+    /* z-index: 1; */
+}
+
+.subHeader svg{
+    color: white;
     /* z-index: 1; */
 }
 

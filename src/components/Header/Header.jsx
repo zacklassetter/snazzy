@@ -156,6 +156,17 @@ function PersistentDrawerLeft({ open, setOpen }) {
         </div>
         <Divider />
         <List>
+        <Link to="/">
+              <ListItem disablePadding>
+                <ListItemButton>
+                  {/* <ListItemIcon>
+                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                </ListItemIcon> */}
+
+                  <ListItemText primary="All" />
+                </ListItemButton>
+              </ListItem>
+            </Link>
           {CATEGORIES.map((text, index) => (
             <Link key={index} to={`/items/${text.toLowerCase()}`}>
               <ListItem disablePadding>
