@@ -34,3 +34,56 @@
     border: 1px solid #f5f5f5;
     max-width: 450px;
 }
+
+.reviewsSection {
+    padding: 0px;
+    margin: 0px 10px;
+}
+
+.overallRating {
+    max-width: 420px;
+    min-width: 240px;
+    min-height: 100px;
+}
+
+.ratingBody {
+    margin: 0px 5px 5px;
+    padding: 0px 5px 5px;
+}
+
+.overallRating h3 {
+    padding: 10px;
+    margin: 0px;
+    border-width: 0px;
+    border-style: none;
+    border-color: transparent;
+    border-radius: 0px;
+    background: rgb(255, 255, 255);
+    font-size: 15px;
+    font-family: "Trade Gothic Regular", sans-serif;
+    color: rgb(37, 55, 70);
+    line-height: 28px;
+    font-weight: bold;
+    font-style: normal;
+    text-transform: none;
+    text-decoration: none;
+}
+
+.ratingsValues {
+    margin-top: 5px;
+    display: flex;
+}
+
+.ratingsValues strong{
+    font-size: 45px;
+    min-width: 60px;
+    padding: 5px 5px 5px 0px;
+    color: rgb(55, 78, 98);
+}
+
+.ratingsDetails {
+    color: rgb(55, 78, 98);
+    font-size: 15px;
+    padding: 5px 5px 5px 0px;
+    margin-top: 5px;
+}
