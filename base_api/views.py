@@ -4,19 +4,44 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.parsers import MultiPartParser, FormParser
-from .models import Item, Cart
-from .serializers import ItemSerializer, UserSerializer, CartSerializer
+from .models import Item, Cart, Review
+from .serializers import ItemSerializer, UserSerializer, CartSerializer, ReviewSerializer
 from rest_framework import generics, permissions, status
 from django.contrib.auth.models import User
 # Create your views here.
 
-
-
-# @api_view(['GET', 'POST'])
+@api_view(['GET', 'PUT', 'DELETE'])
 # @permission_classes([IsAuthenticated])
+def reviewsForItem(request, pk):
+    if request.method == "GET":
+        reviews = Review.objects.all()
+        reviews = reviews.filter(item=pk)
+        print(reviews)
+        serializer = ReviewSerializer(reviews, many=True)
+        return Response(serializer.data)
+    elif request.method == "PUT":
+        request.data["user"] = request.user.id
+        request.data["username"] = request.user.username
+        request.data["item"] = pk
+        reviews = Review.objects.all()
+        review = reviews.filter(user=request.user.id).first()
+        if review is not None:
+            serializer = ReviewSerializer(instance=review, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+        else:
+            serializer = ReviewSerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+        return Response(serializer.data)
+    elif request.method == "DELETE":
+        reviews = Review.objects.all()
+        reviews = reviews.filter(item=pk)
+        reviews.delete()
+        return Response("Item deleted")
+
 @api_view(['GET'])
 def getItems(request):
-    # parser_classes = [MultiPartParser, FormParser]
     if request.method == "GET":
         items = Item.objects.all()
         category = request.query_params.get('category')
@@ -24,18 +49,12 @@ def getItems(request):
             items = items.filter(category=category)
         serializer = ItemSerializer(items, many=True)
         return Response(serializer.data)
-    # elif request.method == "POST":
-    #     serializer = ItemSerializer(data=request.data)
-    #     if serializer.is_valid():
-    #         serializer.save()
-    #     return Response(serializer.data)
 
 class UploadItem(APIView):
     permission_classes = [permissions.IsAuthenticated]
     parser_classes = [MultiPartParser, FormParser]
 
     def post(self, request, format=None):
-        print(request.data)
         serializer = ItemSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()

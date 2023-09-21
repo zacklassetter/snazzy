@@ -32,6 +32,16 @@ class Cart(models.Model):
         self.items.add(item)
         self.updated = timezone.now()
         self.save(update_fields=['updated'])
+
+class Review(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    username = models.CharField(max_length=200, default="default")
+    item = models.ForeignKey(Item, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+    title = models.CharField(max_length=200)
+    rating = models.FloatField()
+    message = models.CharField(max_length=400)
+
     
 @receiver(post_save, sender=User)
 def create_user_cart(sender, instance, created, **kwargs):
