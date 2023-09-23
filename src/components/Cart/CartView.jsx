@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import DeleteIcon from '@mui/icons-material/Delete';
 // import useRequest from '../../hooks/useRequest';
 import api from '../../Auth/authentication';
 import classes from './CartView.module.css';
@@ -37,21 +38,15 @@ function CartView() {
 
   return (
     <div className={classes.cart}>
-      <h1>Cart</h1>
+      <h1>Cart ({!isLoading ? cart.items.length : 0})</h1>
       {isLoading && <div>Loading...</div>}
       {error && <div>Error: {error}</div>}
       {!isLoading && (
         <div>
-          <div>Items in cart: {cart.items.length}</div>
           <div className={classes.itemList}>
             {cart.items.map((item) => (
               <div className={classes.itemDetails} key={item.id}>
-                <div className={classes.a}>
-                  <img className={classes.image} src={item.image} alt={item.name} />
-                  <div>{item.name}</div>
-                  <div>${item.price}</div>
-                </div>
-                {/* add x remove buttons */}
+                <div className={classes.buttonContainer}>
                 <button
                   type="button"
                   className={classes.removeButton}
@@ -59,10 +54,20 @@ function CartView() {
                     removeItem(item.id);
                   }}
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="30px" height="30px">
+                  {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="30px" height="30px">
                     <path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z" />
-                  </svg>
+                  </svg> */}
+                  <DeleteIcon />
                 </button>
+                </div>
+                
+                <div className={classes.a}>
+                  <img className={classes.image} src={item.image} alt={item.name} />
+                  <div className={classes.itemName}>{item.name}</div>
+                  <div>${item.price}</div>
+                </div>
+                {/* add x remove buttons */}
+                
               </div>
             ))}
             <h2>Total: ${cart.total}</h2>

@@ -25,6 +25,8 @@ const useRequest = (url, body = undefined, params = undefined) => {
       api
         .get(url, { headers: headers, params: params})
         .then((res) => {
+
+          // console.log(res.data)
           setData(res.data);
           setIsLoading(false);
         })

@@ -47,6 +47,11 @@
 }
 
 .ratingBody {
+    margin: 0px 5px 25px;
+    padding: 0px 5px 5px;
+}
+
+.ratingHeaderBody {
     margin: 0px 5px 5px;
     padding: 0px 5px 5px;
 }
@@ -86,4 +91,43 @@
     font-size: 15px;
     padding: 5px 5px 5px 0px;
     margin-top: 5px;
+}
+
+.profileName {
+    font-size: 13px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.reviewed {
+    color: #565959;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+.reviewMessage {
+    font-size: 14px;
+    max-width: 700px;
+}
+
+.reviewForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    gap: 10px;
+    /* padding: 20px; */
+    /* border: 1px solid #ccc; */
+    border-radius: 5px;
+    background-color: #fff;
+}
+.reviewForm strong {
+    font-size: 20px;
+}
+
+.reviewsContainer {
+    margin-bottom: 24px;
 }

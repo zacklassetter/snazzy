@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from django.db.models import Avg
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.parsers import MultiPartParser, FormParser
@@ -16,15 +17,15 @@ def reviewsForItem(request, pk):
     if request.method == "GET":
         reviews = Review.objects.all()
         reviews = reviews.filter(item=pk)
-        print(reviews)
+        average = reviews.aggregate(Avg('rating'))
         serializer = ReviewSerializer(reviews, many=True)
-        return Response(serializer.data)
+        return Response({"summary":{"average": average["rating__avg"], "count": reviews.count()}, "reviews": serializer.data})
     elif request.method == "PUT":
         request.data["user"] = request.user.id
         request.data["username"] = request.user.username
         request.data["item"] = pk
         reviews = Review.objects.all()
-        review = reviews.filter(user=request.user.id).first()
+        review = reviews.filter(user=request.user.id, item=pk).first()
         if review is not None:
             serializer = ReviewSerializer(instance=review, data=request.data)
             if serializer.is_valid():

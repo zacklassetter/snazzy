@@ -10,10 +10,10 @@ function ItemDisplay({ data }) {
         <Link to={`/${item.id}`} key={item.id}>
           <div className={classes.itemElement}>
             <img src={item.image} alt={item.name} />
-            <h3>{item.name}</h3>
-            <p>{item.category}</p>
-            <p className={classes.description}>{item.description}</p>
-            <p>Price: ${item.price}</p>
+            <strong>{item.name}</strong>
+            <div className={classes.category}>{item.category}</div>
+            <div className={classes.description}>{item.description}</div>
+            <div>Price: ${item.price}</div>
           </div>
         </Link>
       ))}
