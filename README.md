@@ -1,8 +1,10 @@
-# React + Vite
+# Snazzy Store
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a Full Stack E-Commerce app built with Django and React. This is a hobby project of mine that I am constantly building on, but at the time of writing this, here are some of the notable features:
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+ - JWT authentication on api endpoints with auth flow implemented on the FE. (Login, Registration, and authenticated endpoint calls)
+ - Item categories
+ - User specific Cart
+ - User and Item specific reviews
+ - Image/Item uploading
+ - Deployed on an EC2 instance and publically accessible via [Snazzy Store](http://snazzy.lassetter.net)
