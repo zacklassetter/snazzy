@@ -19,13 +19,13 @@ a:visited  {
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
-  src: local('Roboto'), url(./static/fonts/Roboto-Regular.ttf) format('truetype');
+  src: local('Roboto'), url(http://snazzy.lassetter.net/static/Roboto-Regular.ttf) format('truetype');
 }
 
 @font-face {
   font-family: 'Roboto-Bold';
   font-style: normal;
-  src: local('Roboto-Bold'), url(./static/fonts/Roboto-Bold.ttf) format('truetype');
+  src: local('Roboto-Bold'), url(http://snazzy.lassetter.net/static/Roboto-Bold.ttf) format('truetype');
 }
 
 strong {
